@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
 
 
 
-app.listen(PORT, async () => {
+app.listen(PORT, '0.0.0.0',async () => {
     try {
         await connection;
         console.log(`Server is running at ${PORT} & Database connected successfully`);
