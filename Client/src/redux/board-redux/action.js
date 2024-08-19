@@ -11,7 +11,7 @@ export const createBoard = (data) => async (dispatch) => {
                 'Content-Type': 'application/json',
             }
         }
-        const response = await axios.post('http://localhost:5004/boards/add-board', data, config);
+        const response = await axios.post('https://kanban-app-loz7.onrender.com/boards/add-board', data, config);
         if (response.status >= 200 && response.status < 300) {
             const board = response.data;
             dispatch({ type: BOARD_CREATION_SUCCESS, payload: board });
@@ -37,7 +37,7 @@ export const getBoard = () => async (dispatch) => {
                 authorization: `Bearer ${token}`,
             }
         }
-        const response = await axios.get('http://localhost:5004/boards/view', config);
+        const response = await axios.get('https://kanban-app-loz7.onrender.com/boards/view', config);
         if (response.status >= 200 && response.status < 300) {
             const boards = response.data;
             dispatch({ type: BOARD_GET_SUCCESS, payload: boards });

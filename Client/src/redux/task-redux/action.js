@@ -15,7 +15,7 @@ export const createTask = (data) => async (dispatch) => {
                 'Content-Type': 'application/json',
             }
         };
-        const response = await axios.post('http://localhost:5004/tasks/add', data, config);
+        const response = await axios.post('https://kanban-app-loz7.onrender.com/tasks/add', data, config);
         if (response.status >= 200 && response.status < 300) {
             const task = response.data;
             dispatch({ type: TASK_CREATION_SUCCESS, payload: task });
@@ -37,7 +37,7 @@ export const getTasks = (id, page = 1) => async (dispatch) => {
                 authorization: `Bearer ${token}`,
             }
         };
-        const response = await axios.get(`http://localhost:5004/tasks/view/${id}?page=${page}&limit=5`, config);
+        const response = await axios.get(`https://kanban-app-loz7.onrender.com/tasks/view/${id}?page=${page}&limit=5`, config);
         if (response.status >= 200 && response.status < 300) {
             const { tasks, totalPages, currentPage } = response.data;
             dispatch({ type: TASK_GET_SUCCESS, payload: { tasks, totalPages, currentPage } });
@@ -59,7 +59,7 @@ export const updateTaskStatus = (taskId, status) => async (dispatch) => {
                 authorization: `Bearer ${token}`,
             }
         };
-        const response = await axios.put(`http://localhost:5004/tasks/update/${taskId}`, { status }, config);
+        const response = await axios.put(`https://kanban-app-loz7.onrender.com/tasks/update/${taskId}`, { status }, config);
         if (response.status >= 200 && response.status < 300) {
             dispatch({ type: TASK_UPDATE_SUCCESS, payload: { taskId, status } });
         } else {

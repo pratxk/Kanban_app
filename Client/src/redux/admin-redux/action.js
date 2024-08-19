@@ -13,7 +13,7 @@ export const adminGetTasks = (id, page = 1) => async (dispatch) => {
                 authorization: `Bearer ${token}`,
             }
         };
-        const response = await axios.get(`http://localhost:5004/admin/view-task/${id}?page=${page}&limit=5`, config);
+        const response = await axios.get(`https://kanban-app-loz7.onrender.com/admin/view-task/${id}?page=${page}&limit=5`, config);
         if (response.status >= 200 && response.status < 300) {
             const { tasks, totalPages, currentPage } = response.data;
             dispatch({ type: ADMIN_TASK_GET_SUCCESS, payload: { tasks, totalPages, currentPage } });
@@ -35,7 +35,7 @@ export const adminUpdateTaskStatus = (taskId, status) => async (dispatch) => {
                 authorization: `Bearer ${token}`,
             }
         };
-        const response = await axios.put(`http://localhost:5004/admin/update-task/${taskId}`, { status }, config);
+        const response = await axios.put(`https://kanban-app-loz7.onrender.com/admin/update-task/${taskId}`, { status }, config);
         if (response.status >= 200 && response.status < 300) {
             dispatch({ type: ADMIN_TASK_UPDATE_SUCCESS, payload: { taskId, status } });
         } else {
@@ -54,7 +54,7 @@ export const adminDeleteTask = (taskId) => async (dispatch) => {
                 authorization: `Bearer ${token}`,
             }
         };
-        const response = await axios.delete(`http://localhost:5004/admin/delete-task/${taskId}`, config);
+        const response = await axios.delete(`https://kanban-app-loz7.onrender.com/admin/delete-task/${taskId}`, config);
         if (response.status >= 200 && response.status < 300) {
             dispatch({ type: ADMIN_TASK_DELETE_SUCCESS, payload: response.data });
         } else {
@@ -76,7 +76,7 @@ export const adminGetBoards = () => async (dispatch) => {
                 authorization: `Bearer ${token}`,
             }
         }
-        const response = await axios.get('http://localhost:5004/admin/view-boards', config);
+        const response = await axios.get('https://kanban-app-loz7.onrender.com/admin/view-boards', config);
         if (response.status >= 200 && response.status < 300) {
             const boards = response.data;
             dispatch({ type: ADMIN_BOARDS_GET_SUCCESS, payload: boards });

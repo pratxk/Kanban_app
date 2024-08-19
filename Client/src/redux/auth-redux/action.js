@@ -5,7 +5,7 @@ import { USER_FETCH_FAILURE, USER_FETCH_REQUEST, USER_FETCH_SUCCESS, USER_LOGIN_
 export const register = (credentials) => async (dispatch) => {
     dispatch({ type: USER_REGISTER_REQUEST });
     try {
-        const response = await axios.post('http://localhost:5004/users/register', credentials);
+        const response = await axios.post('https://kanban-app-loz7.onrender.com/users/register', credentials);
         dispatch({ type: USER_REGISTER_SUCCESS, payload: response.data });
         // const history = useHistory();
         // history.push('/login');
@@ -18,7 +18,7 @@ export const register = (credentials) => async (dispatch) => {
 export const login = (credentials) => async (dispatch) => {
     dispatch({ type: USER_LOGIN_REQUEST })
     try {
-        const res = await axios.post('http://localhost:5004/users/login', credentials);
+        const res = await axios.post('https://kanban-app-loz7.onrender.com/users/login', credentials);
         const data = res.data;
         dispatch({ type: USER_LOGIN_SUCCESS, payload: res.data });
         localStorage.setItem('token', JSON.stringify(data.token));
@@ -39,7 +39,7 @@ export const fetchUserData = () => async (dispatch) => {
                 Authorization: `Bearer ${token}`,
             },
         };
-        const response = await axios.get('http://localhost:5004/users/me', config);
+        const response = await axios.get('https://kanban-app-loz7.onrender.com/users/me', config);
         dispatch({ type: USER_FETCH_SUCCESS, payload: response.data });
     } catch (error) {
         dispatch({ type: USER_FETCH_FAILURE, payload: error.message });
@@ -55,7 +55,7 @@ export const logout = () => async (dispatch) => {
                 Authorization: `Bearer ${token}`,
             },
         };
-        await axios.get('http://localhost:5004/users/logout', config);
+        await axios.get('https://kanban-app-loz7.onrender.com/users/logout', config);
         localStorage.removeItem('token');
         dispatch({ type: USER_LOGOUT_SUCCESS });
     } catch (error) {
