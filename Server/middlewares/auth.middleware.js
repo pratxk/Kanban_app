@@ -7,7 +7,7 @@ const auth = async (req, res, next) => {
         if (!authHeader || !authHeader.startsWith('Bearer ')) {
             return res.status(401).send('Unauthorized Access...Please Login First');
         }
-
+        console.log('Authorization Header:', req.headers.authorization);
         const token = authHeader.split(' ')[1];
         jwt.verify(token, process.env.JWT_SECRETKEY1, function (err, decoded) {
             if (err) {

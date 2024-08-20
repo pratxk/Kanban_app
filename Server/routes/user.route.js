@@ -47,15 +47,21 @@ userRouter.post('/login', async (req, res) => {
         }
         if (user) {
             bcrypt.compare(password, user.password, function (err, result) {
+                if (err) {
+                    return res.status(500).json({ message: 'Error during password comparison' });
+                }
                 if (result) {
                     const token = jwt.sign({ _id: user._id, role: user.role }, process.env.JWT_SecretKEY1, { expiresIn: '1day' });
                     res.status(200).json({
                         message: "User LoggedIN successfully",
                         token,
                         role
-                    })
+                    });
+                } else {
+                    res.status(401).json({ message: 'Incorrect Password' });
                 }
-            })
+            });
+            
         }
 
     } catch (error) {
