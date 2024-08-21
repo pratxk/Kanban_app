@@ -22,7 +22,7 @@ app.use('/admin', adminRouter);
 app.use('/boards',boardRouter);
 app.use(checkDisabled);
 
-app.get('/', (req, res) => {
+app.get('/', '0.0.0.0',(req, res) => {
    return res.status(200).send("Server is running fine");
 });
 
