@@ -23,7 +23,7 @@ app.use('/boards',boardRouter);
 app.use(checkDisabled);
 
 app.get('/',(req, res) => {
-    return res.status(200).send("Server is running fine");
+    return res.status(200).send("Server is running fine")
 });
 
 
