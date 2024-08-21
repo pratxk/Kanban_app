@@ -22,13 +22,13 @@ app.use('/admin', adminRouter);
 app.use('/boards',boardRouter);
 app.use(checkDisabled);
 
-app.get('/', '0.0.0.0',(req, res) => {
-   return res.status(200).send("Server is running fine");
+app.get('/',(req, res) => {
+    return res.status(200).send("Server is running fine");
 });
 
 
 
-app.listen(PORT,async () => {
+app.listen(PORT,'0.0.0.0',async () => {
     try {
         await connection;
         console.log(`Server is running at ${PORT} & Database connected successfully`);
