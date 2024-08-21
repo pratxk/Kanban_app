@@ -1,7 +1,7 @@
 const dotenv = require('dotenv').config();
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 5004;
+const PORT = process.env.PORT || 3000;
 const connection = require('./config/db');
 const taskRouter = require('./routes/task.route');
 const userRouter = require('./routes/user.route');
@@ -28,7 +28,7 @@ app.get('/',(req, res) => {
 
 
 
-app.listen(PORT,'0.0.0.0',async () => {
+app.listen(PORT,async () => {
     try {
         await connection;
         console.log(`Server is running at ${PORT} & Database connected successfully`);
